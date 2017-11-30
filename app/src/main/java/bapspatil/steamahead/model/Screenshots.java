@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Screenshots implements Parcelable {
 
-    private @SerializedName("path_thumbnail") String pathThumbnail;
+    @SerializedName("path_thumbnail") String pathThumbnail;
 
     public String getPathThumbnail() {
         return pathThumbnail;

@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ReleaseDate implements Parcelable {
 
-    private @SerializedName("date") String date;
+    @SerializedName("date") String date;
 
     public String getDate() {
         return date;

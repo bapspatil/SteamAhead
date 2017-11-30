@@ -11,8 +11,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Metacritic implements Parcelable {
 
-    private @SerializedName("score") int score;
-    private @SerializedName("url") String url;
+    @SerializedName("score") int score;
+    @SerializedName("url") String url;
 
     public int getScore() {
         return score;

@@ -12,12 +12,12 @@ import java.util.List;
  */
 
 public class GameData implements Parcelable {
-    private @SerializedName("name") String name;
-    private @SerializedName("detailed_description") String detailedDescription;
-    private @SerializedName("metacritic") Metacritic metacritic;
-    private @SerializedName("screenshots") List<Screenshots> screenshots;
-    private @SerializedName("release_date") ReleaseDate releaseDate;
-    private @SerializedName("background") String background;
+    @SerializedName("name") String name;
+    @SerializedName("detailed_description") String detailedDescription;
+    @SerializedName("metacritic") Metacritic metacritic;
+    @SerializedName("screenshots") List<Screenshots> screenshots;
+    @SerializedName("release_date") ReleaseDate releaseDate;
+    @SerializedName("background") String background;
 
     public String getName() {
         return name;

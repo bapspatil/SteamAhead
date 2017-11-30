@@ -14,6 +14,7 @@ import bapspatil.steamahead.R;
 import bapspatil.steamahead.adapters.GamesRecyclerViewAdapter;
 import bapspatil.steamahead.model.GameData;
 import bapspatil.steamahead.model.GameDetailsResponse;
+import bapspatil.steamahead.model.PlayersData;
 import bapspatil.steamahead.model.PlayersDetailsResponse;
 import bapspatil.steamahead.network.GameDetailsAPI;
 import bapspatil.steamahead.network.PlayersDetailsAPI;
@@ -74,23 +75,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            Call<PlayersDetailsResponse> playersCall = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList.get(i));
+            Call<PlayersDetailsResponse> playersCall = playersDetailsAPI.getPlayersDetails("concurrent_week", Steam.gameIdsList.get(i));
             playersCall.enqueue(new Callback<PlayersDetailsResponse>() {
                 @Override
                 public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
                     PlayersDetailsResponse playersDetailsResponse = response.body();
-                    // TODO: Fix crash for null ArrayList here, do something about it!
-                    ArrayList<Integer> listOfPlayers = playersDetailsResponse.getData().getPlayers();
-                    mPlayers.add(listOfPlayers.size());
+                    // TODO: Fix crash for null stuff here, do something about it!
+                    if(playersDetailsResponse != null) {
+                        PlayersData playersData = playersDetailsResponse.getData();
+                        ArrayList<Number> listOfPlayers = playersData.getPlayers();
+                        mPlayers.add(listOfPlayers.size());
+                    } else {
+                        toast("Response is null!");
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Couldn't fetch number of players!", Toast.LENGTH_LONG).show();
+                    toast("Couldn't fetch number of players!");
                 }
             });
 
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    void toast(String toastMessage) {
+        Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_LONG).show();
     }
 }

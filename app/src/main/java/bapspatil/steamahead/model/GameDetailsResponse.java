@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class GameDetailsResponse implements Parcelable {
-    private @SerializedName("data") GameData data;
+    @SerializedName("data") GameData data;
 
     public GameData getData() {
         return data;

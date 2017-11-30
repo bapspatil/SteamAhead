@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 
 public class PlayersData implements Parcelable {
-    private @SerializedName("values_twitch") ArrayList<Integer> players;
+    @SerializedName("values") ArrayList<Number> players;
 
-    public ArrayList<Integer> getPlayers() {
+    public ArrayList<Number> getPlayers() {
         return players;
     }
 
-    public void setPlayers(ArrayList<Integer> players) {
+    public void setPlayers(ArrayList<Number> players) {
         this.players = players;
     }
 
@@ -36,8 +36,8 @@ public class PlayersData implements Parcelable {
     }
 
     protected PlayersData(Parcel in) {
-        this.players = new ArrayList<Integer>();
-        in.readList(this.players, Integer.class.getClassLoader());
+        this.players = new ArrayList<Number>();
+        in.readList(this.players, Number.class.getClassLoader());
     }
 
     public static final Creator<PlayersData> CREATOR = new Creator<PlayersData>() {

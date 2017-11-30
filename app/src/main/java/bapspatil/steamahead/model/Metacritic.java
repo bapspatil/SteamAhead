@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by bapspatil
  */
 
-class Metacritic implements Parcelable {
+public class Metacritic implements Parcelable {
 
     private @SerializedName("score") int score;
     private @SerializedName("url") String url;

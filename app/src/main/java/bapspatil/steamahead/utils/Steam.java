@@ -13,6 +13,6 @@ public class Steam {
 
     public static final String GAME_DETAILS_URL = "http://store.steampowered.com/api/";
 
-    public static final String PLAYERS_DETAILS_URL = "https://steamdb.info/api/GetGraph/";
+    public static final String PLAYERS_DETAILS_URL = "https://steamdb.info/api/";
 
 }

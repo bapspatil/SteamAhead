@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by bapspatil
  */
 
-class Screenshots implements Parcelable {
+public class Screenshots implements Parcelable {
 
     private @SerializedName("path_thumbnail") String pathThumbnail;
 

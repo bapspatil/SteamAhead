@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by bapspatil
  */
 
-class ReleaseDate implements Parcelable {
+public class ReleaseDate implements Parcelable {
 
     private @SerializedName("date") String date;
 

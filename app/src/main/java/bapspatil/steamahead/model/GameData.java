@@ -11,7 +11,7 @@ import java.util.List;
  * Created by bapspatil
  */
 
-class GameData implements Parcelable {
+public class GameData implements Parcelable {
     private @SerializedName("name") String name;
     private @SerializedName("detailed_description") String detailedDescription;
     private @SerializedName("metacritic") Metacritic metacritic;

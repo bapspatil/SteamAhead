@@ -3,6 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,13 +11,14 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class PlayersDetailsResponse implements Parcelable {
-    @SerializedName("data") PlayersData data;
+    @SerializedName("data") @Expose PlayersData playersData;
 
-    public PlayersData getData() {
-        return data;
+    public PlayersData getPlayersData() {
+        return playersData;
     }
 
-    public void setData(PlayersData data) {
+    public void setPlayersData(PlayersData playersData) {
+        this.playersData = playersData;
     }
 
     @Override
@@ -26,14 +28,14 @@ public class PlayersDetailsResponse implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.data, flags);
+        dest.writeParcelable(this.playersData, flags);
     }
 
     public PlayersDetailsResponse() {
     }
 
     protected PlayersDetailsResponse(Parcel in) {
-        this.data = in.readParcelable(PlayersData.class.getClassLoader());
+        this.playersData = in.readParcelable(PlayersData.class.getClassLoader());
     }
 
     public static final Creator<PlayersDetailsResponse> CREATOR = new Creator<PlayersDetailsResponse>() {

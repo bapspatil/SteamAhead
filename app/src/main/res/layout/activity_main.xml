@@ -5,7 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="bapspatil.steamahead.ui.MainActivity">
+
+    <TextView
+        android:id="@+id/response_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Hello!"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/games_rv"

@@ -3,6 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -12,15 +13,16 @@ import java.util.ArrayList;
  */
 
 public class PlayersData implements Parcelable {
-    @SerializedName("values") ArrayList<Number> players;
+    @SerializedName("values") @Expose ArrayList<Integer> players;
 
-    public ArrayList<Number> getPlayers() {
+    public ArrayList<Integer> getPlayers() {
         return players;
     }
 
-    public void setPlayers(ArrayList<Number> players) {
+    public void setPlayers(ArrayList<Integer> players) {
         this.players = players;
     }
+
 
     @Override
     public int describeContents() {
@@ -36,8 +38,8 @@ public class PlayersData implements Parcelable {
     }
 
     protected PlayersData(Parcel in) {
-        this.players = new ArrayList<Number>();
-        in.readList(this.players, Number.class.getClassLoader());
+        this.players = new ArrayList<Integer>();
+        in.readList(this.players, Integer.class.getClassLoader());
     }
 
     public static final Creator<PlayersData> CREATOR = new Creator<PlayersData>() {

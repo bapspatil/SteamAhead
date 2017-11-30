@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ import bapspatil.steamahead.R;
 import bapspatil.steamahead.adapters.GamesRecyclerViewAdapter;
 import bapspatil.steamahead.model.GameData;
 import bapspatil.steamahead.model.GameDetailsResponse;
-import bapspatil.steamahead.model.PlayersData;
 import bapspatil.steamahead.model.PlayersDetailsResponse;
 import bapspatil.steamahead.network.GameDetailsAPI;
 import bapspatil.steamahead.network.PlayersDetailsAPI;
@@ -28,6 +28,8 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.games_rv) RecyclerView gamesRecyclerView;
+    @BindView(R.id.response_tv)
+    TextView responseTextView;
 
     List<GameData> mGameData = new ArrayList<>();
     List<Integer> mPlayers = new ArrayList<>();
@@ -57,11 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetchGames() {
         GameDetailsAPI gameDetailsAPI = GameDetailsAPI.retrofit.create(GameDetailsAPI.class);
+        Call<GameDetailsResponse> gameCall;
         PlayersDetailsAPI playersDetailsAPI = PlayersDetailsAPI.retrofit.create(PlayersDetailsAPI.class);
+        Call<PlayersDetailsResponse> playersCall;
         final int numberOfGames = Steam.gameIdsList.size();
 
-        for(int i = 0; i < numberOfGames; i++) {
-            Call<GameDetailsResponse> gameCall = gameDetailsAPI.getGameDetails(Steam.gameIdsList.get(i));
+        for (int i = 0; i < numberOfGames; i++) {
+            gameCall = gameDetailsAPI.getGameDetails(Steam.gameIdsList.get(i));
             gameCall.enqueue(new Callback<GameDetailsResponse>() {
                 @Override
                 public void onResponse(Call<GameDetailsResponse> call, Response<GameDetailsResponse> response) {
@@ -75,19 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            Call<PlayersDetailsResponse> playersCall = playersDetailsAPI.getPlayersDetails("concurrent_week", Steam.gameIdsList.get(i));
+            playersCall = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList.get(i));
             playersCall.enqueue(new Callback<PlayersDetailsResponse>() {
                 @Override
                 public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
                     PlayersDetailsResponse playersDetailsResponse = response.body();
                     // TODO: Fix crash for null stuff here, do something about it!
-                    if(playersDetailsResponse != null) {
-                        PlayersData playersData = playersDetailsResponse.getData();
-                        ArrayList<Number> listOfPlayers = playersData.getPlayers();
-                        mPlayers.add(listOfPlayers.size());
-                    } else {
-                        toast("Response is null!");
-                    }
+                    mPlayers.add(playersDetailsResponse.getPlayersData().getPlayers().size());
+
                 }
 
                 @Override
@@ -95,9 +94,8 @@ public class MainActivity extends AppCompatActivity {
                     toast("Couldn't fetch number of players!");
                 }
             });
-
-            mAdapter.notifyDataSetChanged();
         }
+        mAdapter.notifyDataSetChanged();
     }
 
     void toast(String toastMessage) {

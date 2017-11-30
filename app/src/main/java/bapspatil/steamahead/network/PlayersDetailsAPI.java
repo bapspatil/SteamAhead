@@ -14,8 +14,8 @@ import retrofit2.http.Query;
 
 public interface PlayersDetailsAPI {
 
-    @GET("GetGraph")
-    Call<PlayersDetailsResponse> getPlayersDetails(@Query("type") String TYPE, @Query("appid") String APPID);
+    @GET("GetGraph/?type=concurrent_week")
+    Call<PlayersDetailsResponse> getPlayersDetails(@Query("appid") String APPID);
 
     public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Steam.PLAYERS_DETAILS_URL)

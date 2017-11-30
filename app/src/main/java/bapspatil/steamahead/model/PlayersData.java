@@ -6,23 +6,21 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by bapspatil
  */
 
 public class PlayersData implements Parcelable {
-    private @SerializedName("values_twitch") List<Integer> players;
+    private @SerializedName("values_twitch") ArrayList<Integer> players;
 
-    public List<Integer> getPlayers() {
+    public ArrayList<Integer> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Integer> players) {
+    public void setPlayers(ArrayList<Integer> players) {
         this.players = players;
     }
-
 
     @Override
     public int describeContents() {

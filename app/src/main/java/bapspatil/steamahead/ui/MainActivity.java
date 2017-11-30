@@ -1,7 +1,9 @@
-package bapspatil.steamahead;
+package bapspatil.steamahead.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import bapspatil.steamahead.R;
 
 public class MainActivity extends AppCompatActivity {
 

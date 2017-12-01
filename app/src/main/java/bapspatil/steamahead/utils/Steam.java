@@ -1,7 +1,7 @@
 package bapspatil.steamahead.utils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by bapspatil
@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Steam {
 
-    public static final ArrayList<String> gameIdsList = new ArrayList<>(Arrays.asList("271590", "476600", "730", "235600", "582160", "203140", "124923"));
+    public static final List<String> gameIdsList = Arrays.asList("271590", "476600", "730", "235600", "582160", "203140", "124923");
 
     public static final String GAME_DETAILS_URL = "http://store.steampowered.com/api/";
 

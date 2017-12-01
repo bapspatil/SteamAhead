@@ -21,7 +21,6 @@ public class ReleaseDate implements Parcelable {
         this.date = date;
     }
 
-
     @Override
     public int describeContents() {
         return 0;

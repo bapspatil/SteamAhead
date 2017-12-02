@@ -3,6 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -10,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 public class Screenshots implements Parcelable {
+
+    @JsonIgnore Object id, path_full;
 
     @JsonProperty("path_thumbnail") String path_thumbnail;
 

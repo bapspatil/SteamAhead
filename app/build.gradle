@@ -17,7 +17,6 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'STEAM_API_TOKEN', MySteamApiKey
         it.buildConfigField 'String', 'FIREBASE_AUTH_KEY', MyFirebaseAuthKey
     }
 }

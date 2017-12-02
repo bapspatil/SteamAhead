@@ -6,9 +6,7 @@ package bapspatil.steamahead.utils;
 
 public class Steam {
 
-    public static final int[] gameIdsList = {271590, 476600, 730, 235600, 582160, 203140, 124923};
-
-    public static final String MY_STEAM_ID = "76561198449339119";
+    public static final String[] gameIdsList = {"271590", "476600", "730", "235600", "582160", "203140", "550"};
 
     public static final String GAME_DETAILS_URL = "http://store.steampowered.com/api/";
 

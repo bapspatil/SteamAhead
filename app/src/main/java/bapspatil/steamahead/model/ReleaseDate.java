@@ -3,6 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -10,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 public class ReleaseDate implements Parcelable {
+
+    @JsonIgnore Object coming_soon;
 
     @JsonProperty("date") String date;
 

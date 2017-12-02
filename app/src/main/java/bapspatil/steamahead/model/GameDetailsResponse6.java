@@ -3,14 +3,16 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by bapspatil
  */
 
-public class GameDetailsResponse implements Parcelable {
-    private Game game;
+public class GameDetailsResponse6 implements Parcelable {
+    @JsonProperty("550") private Game game;
 
-    public GameDetailsResponse(Game game) {
+    public GameDetailsResponse6(Game game) {
         this.game = game;
     }
 
@@ -22,7 +24,7 @@ public class GameDetailsResponse implements Parcelable {
         this.game = game;
     }
 
-    public GameDetailsResponse() {
+    public GameDetailsResponse6() {
 
     }
 
@@ -36,19 +38,19 @@ public class GameDetailsResponse implements Parcelable {
         dest.writeParcelable(this.game, flags);
     }
 
-    protected GameDetailsResponse(Parcel in) {
+    public GameDetailsResponse6(Parcel in) {
         this.game = in.readParcelable(Game.class.getClassLoader());
     }
 
-    public static final Creator<GameDetailsResponse> CREATOR = new Creator<GameDetailsResponse>() {
+    public static final Creator<GameDetailsResponse6> CREATOR = new Creator<GameDetailsResponse6>() {
         @Override
-        public GameDetailsResponse createFromParcel(Parcel source) {
-            return new GameDetailsResponse(source);
+        public GameDetailsResponse6 createFromParcel(Parcel source) {
+            return new GameDetailsResponse6(source);
         }
 
         @Override
-        public GameDetailsResponse[] newArray(int size) {
-            return new GameDetailsResponse[size];
+        public GameDetailsResponse6[] newArray(int size) {
+            return new GameDetailsResponse6[size];
         }
     };
 }

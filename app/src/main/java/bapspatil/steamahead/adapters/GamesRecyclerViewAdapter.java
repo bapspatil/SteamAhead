@@ -77,11 +77,11 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
 
         @Override
         public void onClick(View view) {
-            mClickListener.onGameClicked(mGameData.get(getAdapterPosition()));
+            mClickListener.onGameClicked(mGameData.get(getAdapterPosition()), mGameThumbnailImageView);
         }
     }
 
     public interface OnGameClickListener {
-        void onGameClicked(GameData gameData);
+        void onGameClicked(GameData gameData, ImageView imageView);
     }
 }

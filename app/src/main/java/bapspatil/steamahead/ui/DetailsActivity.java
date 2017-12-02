@@ -66,4 +66,5 @@ public class DetailsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mScreenshotsRecyclerView.setLayoutManager(layoutManager);
     }
+
 }

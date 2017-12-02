@@ -2,10 +2,12 @@ package bapspatil.steamahead.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -49,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter = new GamesRecyclerViewAdapter(this, mGames, mPlayers, new GamesRecyclerViewAdapter.OnGameClickListener() {
             @Override
-            public void onGameClicked(GameData gameData) {
+            public void onGameClicked(GameData gameData, ImageView imageView) {
                 Intent intentToStartDetailsActivity = new Intent(MainActivity.this, DetailsActivity.class);
                 intentToStartDetailsActivity.putExtra("GAME", gameData);
-                startActivity(intentToStartDetailsActivity);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imageView, "BackdropTransition");
+                startActivity(intentToStartDetailsActivity, options.toBundle());
             }
         });
         gamesRecyclerView.setAdapter(mAdapter);

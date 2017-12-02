@@ -17,6 +17,7 @@
             android:id="@+id/game_thumbnail_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:transitionName="BackdropTransition"
             android:scaleType="centerCrop"
             android:contentDescription="@string/game_thumbnail"/>
 

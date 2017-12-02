@@ -16,6 +16,7 @@
             android:id="@+id/background_iv"
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:transitionName="BackdropTransition"
             android:fitsSystemWindows="false"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"/>

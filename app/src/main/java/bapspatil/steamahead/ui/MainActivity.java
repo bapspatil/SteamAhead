@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         toast("App developed by Bapusaheb Patil");
 
-
         mAdapter = new GamesRecyclerViewAdapter(this, mGameTitles, mGameHeaderImages, mGameIds, mPlayers, new GamesRecyclerViewAdapter.OnGameClickListener() {
             @Override
             public void onGameClicked(String gameId) {
@@ -58,34 +58,147 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         gamesRecyclerView.setAdapter(mAdapter);
+
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         gamesRecyclerView.setLayoutManager(layoutManager);
+
+        fetchPlayers();
         fetchGames();
+
+    }
+
+    private void fetchPlayers() {
+        RetrofitAPI playersDetailsAPI = RetrofitAPI.playersRetrofit.create(RetrofitAPI.class);
+        Call<PlayersDetailsResponse> playersCall0 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[0]);
+        playersCall0.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Call<PlayersDetailsResponse> playersCall1 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[1]);
+        playersCall1.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Call<PlayersDetailsResponse> playersCall2 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[2]);
+        playersCall2.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Call<PlayersDetailsResponse> playersCall3 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[3]);
+        playersCall3.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Call<PlayersDetailsResponse> playersCall4 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[4]);
+        playersCall4.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Call<PlayersDetailsResponse> playersCall5 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[5]);
+        playersCall5.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Call<PlayersDetailsResponse> playersCall6 = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[6]);
+        playersCall6.enqueue(new Callback<PlayersDetailsResponse>() {
+            @Override
+            public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
+                PlayersDetailsResponse playersDetailsResponse = response.body();
+                PlayersData playersData = playersDetailsResponse.getData();
+                int numberOfPlayers = playersData.getValues().size();
+                Log.e("NO_OF_PLAYERS", numberOfPlayers + "");
+                toast(String.valueOf(numberOfPlayers));
+                mPlayers.add(numberOfPlayers);
+            }
+
+            @Override
+            public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
+                // Nothing
+                Log.e("NO_PLAYERS!", t.getMessage());
+            }
+        });
+        Log.e("PLAYERS!", mPlayers.toString());
     }
 
     private void fetchGames() {
-        int numberOfGames = Steam.gameIdsList.length;
-
-        RetrofitAPI playersDetailsAPI = RetrofitAPI.playersRetrofit.create(RetrofitAPI.class);
-        Call<PlayersDetailsResponse> playersCall;
-        for(int i = 0; i < numberOfGames; i++) {
-            playersCall = playersDetailsAPI.getPlayersDetails(Steam.gameIdsList[i]);
-            playersCall.enqueue(new Callback<PlayersDetailsResponse>() {
-                @Override
-                public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
-                    PlayersDetailsResponse playersDetailsResponse = response.body();
-                    PlayersData playersData = playersDetailsResponse.getData();
-                    int numberOfPlayers = playersData.getValues().size();
-                    mPlayers.add(numberOfPlayers);
-                }
-
-                @Override
-                public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
-                    // Nothing
-                }
-            });
-        }
-
         RetrofitAPI gameDetailsAPI = RetrofitAPI.gamesRetrofit.create(RetrofitAPI.class);
         Call<GameDetailsResponse0> gameCall0 = gameDetailsAPI.getGameDetails0(Steam.gameIdsList[0]);
         gameCall0.enqueue(new Callback<GameDetailsResponse0>() {
@@ -97,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -115,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -133,7 +244,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -151,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -169,7 +278,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -187,7 +295,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -205,7 +312,6 @@ public class MainActivity extends AppCompatActivity {
                 mGameTitles.add(gameData.getName());
                 mGameHeaderImages.add(gameData.getHeader_image());
                 mGameIds.add(gameData.getSteam_appid());
-                mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds, mPlayers);
             }
 
             @Override
@@ -213,6 +319,8 @@ public class MainActivity extends AppCompatActivity {
                 toast("Couldn't fetch details!" + t.getMessage());
             }
         });
+        mAdapter.setNumberOfPlayers(mPlayers);
+        mAdapter.setGames(mGameTitles, mGameHeaderImages, mGameIds);
     }
 
     void toast(String toastMessage) {

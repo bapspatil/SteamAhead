@@ -64,11 +64,10 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
         else return mGameTitles.size();
     }
 
-    public void setGames(List<String> gameTitles, List<String> gameHeaderImages, List<String> gameIds, List<Integer> players) {
+    public void setGames(List<String> gameTitles, List<String> gameHeaderImages, List<String> gameIds) {
         mGameTitles = gameTitles;
         mGameHeaderImages = gameHeaderImages;
         mGameIds = gameIds;
-        mPlayers = players;
         if(gameTitles != null) {
             notifyItemRangeChanged(0, gameTitles.size());
             notifyDataSetChanged();

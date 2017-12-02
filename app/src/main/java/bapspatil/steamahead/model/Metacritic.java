@@ -3,7 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by bapspatil
@@ -11,8 +11,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Metacritic implements Parcelable {
 
-    @SerializedName("score") int score;
-    @SerializedName("url") String url;
+    @JsonProperty("score") int score;
 
     public int getScore() {
         return score;
@@ -22,12 +21,13 @@ public class Metacritic implements Parcelable {
         this.score = score;
     }
 
-    public String getUrl() {
-        return url;
+    public Metacritic(int score) {
+
+        this.score = score;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public Metacritic() {
+
     }
 
     @Override
@@ -38,15 +38,10 @@ public class Metacritic implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.score);
-        dest.writeString(this.url);
-    }
-
-    public Metacritic() {
     }
 
     protected Metacritic(Parcel in) {
         this.score = in.readInt();
-        this.url = in.readString();
     }
 
     public static final Creator<Metacritic> CREATOR = new Creator<Metacritic>() {

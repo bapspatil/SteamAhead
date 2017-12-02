@@ -3,8 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,108 +13,108 @@ import java.util.List;
  */
 
 public class GameData implements Parcelable {
-        @SerializedName("name") @Expose
-        String name;
-        @SerializedName("detailed_description") @Expose String detailedDescription;
-        @SerializedName("metacritic") @Expose Metacritic metacritic;
-        @SerializedName("screenshots") @Expose
-        List<Screenshots> screenshots = new ArrayList<>();
-        @SerializedName("release_date") @Expose ReleaseDate releaseDate;
-        @SerializedName("background") @Expose String background;
+        @JsonProperty("name") String name;
+        @JsonProperty("detailed_description") String detailed_description;
+        @JsonProperty("metacritic") Metacritic metacritic;
+        @JsonProperty("screenshots") List<Screenshots> screenshots = new ArrayList<>();
+        @JsonProperty("release_date") ReleaseDate release_date;
+        @JsonProperty("background") String background;
 
-        public String getName() {
-            return name;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public String getDetailedDescription() {
-            return detailedDescription;
-        }
+    public String getDetailed_description() {
+        return detailed_description;
+    }
 
-        public void setDetailedDescription(String detailedDescription) {
-            this.detailedDescription = detailedDescription;
-        }
+    public void setDetailed_description(String detailed_description) {
+        this.detailed_description = detailed_description;
+    }
 
-        public Metacritic getMetacritic() {
-            return metacritic;
-        }
+    public Metacritic getMetacritic() {
+        return metacritic;
+    }
 
-        public void setMetacritic(Metacritic metacritic) {
-            this.metacritic = metacritic;
-        }
+    public void setMetacritic(Metacritic metacritic) {
+        this.metacritic = metacritic;
+    }
 
-        public List<Screenshots> getScreenshots() {
-            return screenshots;
-        }
+    public List<Screenshots> getScreenshots() {
+        return screenshots;
+    }
 
-        public void setScreenshots(List<Screenshots> screenshots) {
-            this.screenshots = screenshots;
-        }
+    public void setScreenshots(List<Screenshots> screenshots) {
+        this.screenshots = screenshots;
+    }
 
-        public ReleaseDate getReleaseDate() {
-            return releaseDate;
-        }
+    public ReleaseDate getRelease_date() {
+        return release_date;
+    }
 
-        public void setReleaseDate(ReleaseDate releaseDate) {
-            this.releaseDate = releaseDate;
-        }
+    public void setRelease_date(ReleaseDate release_date) {
+        this.release_date = release_date;
+    }
 
-        public String getBackground() {
-            return background;
-        }
+    public String getBackground() {
+        return background;
+    }
 
-        public void setBackground(String background) {
-            this.background = background;
-        }
+    public void setBackground(String background) {
+        this.background = background;
+    }
 
-        public GameData(String name, String detailedDescription, Metacritic metacritic, List<Screenshots> screenshots, ReleaseDate releaseDate, String background) {
+    public GameData(String name, String detailed_description, Metacritic metacritic, List<Screenshots> screenshots, ReleaseDate release_date, String background) {
 
-            this.name = name;
-            this.detailedDescription = detailedDescription;
-            this.metacritic = metacritic;
-            this.screenshots = screenshots;
-            this.releaseDate = releaseDate;
-            this.background = background;
+        this.name = name;
+        this.detailed_description = detailed_description;
+        this.metacritic = metacritic;
+        this.screenshots = screenshots;
+        this.release_date = release_date;
+        this.background = background;
+    }
+
+    public GameData() {
+
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.detailed_description);
+        dest.writeParcelable(this.metacritic, flags);
+        dest.writeTypedList(this.screenshots);
+        dest.writeParcelable(this.release_date, flags);
+        dest.writeString(this.background);
+    }
+
+    protected GameData(Parcel in) {
+        this.name = in.readString();
+        this.detailed_description = in.readString();
+        this.metacritic = in.readParcelable(Metacritic.class.getClassLoader());
+        this.screenshots = in.createTypedArrayList(Screenshots.CREATOR);
+        this.release_date = in.readParcelable(ReleaseDate.class.getClassLoader());
+        this.background = in.readString();
+    }
+
+    public static final Creator<GameData> CREATOR = new Creator<GameData>() {
+        @Override
+        public GameData createFromParcel(Parcel source) {
+            return new GameData(source);
         }
 
         @Override
-        public int describeContents() {
-            return 0;
+        public GameData[] newArray(int size) {
+            return new GameData[size];
         }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.name);
-            dest.writeString(this.detailedDescription);
-            dest.writeParcelable(this.metacritic, flags);
-            dest.writeList(this.screenshots);
-            dest.writeParcelable(this.releaseDate, flags);
-            dest.writeString(this.background);
-        }
-
-        protected GameData(Parcel in) {
-            this.name = in.readString();
-            this.detailedDescription = in.readString();
-            this.metacritic = in.readParcelable(Metacritic.class.getClassLoader());
-            this.screenshots = new ArrayList<Screenshots>();
-            in.readList(this.screenshots, Screenshots.class.getClassLoader());
-            this.releaseDate = in.readParcelable(ReleaseDate.class.getClassLoader());
-            this.background = in.readString();
-        }
-
-        public static final Creator<GameData> CREATOR = new Creator<GameData>() {
-            @Override
-            public GameData createFromParcel(Parcel source) {
-                return new GameData(source);
-            }
-
-            @Override
-            public GameData[] newArray(int size) {
-                return new GameData[size];
-            }
-        };
-
+    };
 }

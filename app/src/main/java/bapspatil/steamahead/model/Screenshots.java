@@ -3,7 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by bapspatil
@@ -11,16 +11,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class Screenshots implements Parcelable {
 
-    @SerializedName("path_thumbnail") String pathThumbnail;
+    @JsonProperty("path_thumbnail") String path_thumbnail;
 
-    public String getPathThumbnail() {
-        return pathThumbnail;
+    public String getPath_thumbnail() {
+        return path_thumbnail;
     }
 
-    public void setPathThumbnail(String pathThumbnail) {
-        this.pathThumbnail = pathThumbnail;
+    public void setPath_thumbnail(String path_thumbnail) {
+        this.path_thumbnail = path_thumbnail;
     }
 
+    public Screenshots(String path_thumbnail) {
+
+        this.path_thumbnail = path_thumbnail;
+    }
+
+    public Screenshots() {
+
+    }
     @Override
     public int describeContents() {
         return 0;
@@ -28,14 +36,11 @@ public class Screenshots implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.pathThumbnail);
-    }
-
-    public Screenshots() {
+        dest.writeString(this.path_thumbnail);
     }
 
     protected Screenshots(Parcel in) {
-        this.pathThumbnail = in.readString();
+        this.path_thumbnail = in.readString();
     }
 
     public static final Creator<Screenshots> CREATOR = new Creator<Screenshots>() {

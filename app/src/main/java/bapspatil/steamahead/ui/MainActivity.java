@@ -13,10 +13,9 @@ import java.util.List;
 
 import bapspatil.steamahead.R;
 import bapspatil.steamahead.adapters.GamesRecyclerViewAdapter;
-import bapspatil.steamahead.model.Game;
+import bapspatil.steamahead.model.GameData;
 import bapspatil.steamahead.model.GameDetailsResponse;
-import bapspatil.steamahead.model.PlayersDetailsResponse;
-import bapspatil.steamahead.network.SteamAPI;
+import bapspatil.steamahead.network.RetrofitAPI;
 import bapspatil.steamahead.utils.Steam;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.games_rv) RecyclerView gamesRecyclerView;
     @BindView(R.id.response_tv) TextView responseTextView;
 
-    List<Game> mGames = new ArrayList<>();
+    List<GameData> mGames = new ArrayList<>();
     List<Integer> mPlayers = new ArrayList<>();
     GamesRecyclerViewAdapter mAdapter;
 
@@ -38,13 +37,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        toast("App developed by Bapusaheb Patil");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         gamesRecyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new GamesRecyclerViewAdapter(this, mGames, mPlayers, new GamesRecyclerViewAdapter.OnGameClickListener() {
             @Override
-            public void onGameClicked(Game game) {
+            public void onGameClicked(GameData game) {
                 Intent intentToStartDetailsActivity = new Intent(MainActivity.this, DetailsActivity.class);
                 intentToStartDetailsActivity.putExtra("GAME", game);
                 startActivity(intentToStartDetailsActivity);
@@ -56,46 +56,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchGames() {
-        SteamAPI gameDetailsAPI = SteamAPI.gamesRetrofit.create(SteamAPI.class);
+        int numberOfGames = Steam.gameIdsList.length;
+
+        RetrofitAPI gameDetailsAPI = RetrofitAPI.gamesRetrofit.create(RetrofitAPI.class);
         Call<GameDetailsResponse> gameCall;
-        SteamAPI playersDetailsAPI = SteamAPI.playersRetrofit.create(SteamAPI.class);
-        Call<PlayersDetailsResponse> playersCall;
-        final int numberOfGames = Steam.gameIdsList.size();
 
-        for (int i = 0; i < numberOfGames; i++) {
-            gameCall = gameDetailsAPI.getGameDetails(Steam.gameIdsList.get(i));
-            gameCall.enqueue(new Callback<GameDetailsResponse>() {
-                @Override
-                public void onResponse(Call<GameDetailsResponse> call, Response<GameDetailsResponse> response) {
-                    GameDetailsResponse gameDetailsResponse = response.body();
-                    Game game = gameDetailsResponse.getGame();
-                    mGames.add(game);
-                    responseTextView.setText(game.getData().getName());
-                }
+        gameCall = gameDetailsAPI.getGameDetails(Steam.gameIdsList[0]);
+        gameCall.enqueue(new Callback<GameDetailsResponse>() {
+            @Override
+            public void onResponse(Call<GameDetailsResponse> call, Response<GameDetailsResponse> response) {
+                GameDetailsResponse gameDetailsResponse = response.body();
+                toast(String.valueOf(response.code()));
+                toast(gameDetailsResponse.getGame().getData().getName());
+                mGames.add(gameDetailsResponse.getGame().getData());
+            }
 
-                @Override
-                public void onFailure(Call<GameDetailsResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Couldn't fetch game details!", Toast.LENGTH_LONG).show();
-                }
-            });
-            /*playersCall = playersDetailsAPI.getPlayersDetails("concurrent_week", Steam.gameIdsList.get(i));
-            playersCall.enqueue(new Callback<PlayersDetailsResponse>() {
-                @Override
-                public void onResponse(Call<PlayersDetailsResponse> call, Response<PlayersDetailsResponse> response) {
-                    PlayersDetailsResponse playersDetailsResponse = response.body();
-                    PlayersData playersData = playersDetailsResponse.getData();
-                    int[] players = playersData.getValues();
-                    int numberOfPlayers = players.length;
-                    mPlayers.add(numberOfPlayers);
-                }
-
-                @Override
-                public void onFailure(Call<PlayersDetailsResponse> call, Throwable t) {
-
-                }
-            });*/
-        }
+            @Override
+            public void onFailure(Call<GameDetailsResponse> call, Throwable t) {
+                toast("Couldn't fetch details!");
+            }
+        });
         mAdapter.notifyDataSetChanged();
+
     }
 
     void toast(String toastMessage) {

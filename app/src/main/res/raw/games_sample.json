@@ -39,9 +39,9 @@
         69785,
         "69814",
         "69815",
-        69816,
-        69817,
-        69821
+        "69816",
+        "69817",
+        "69821"
       ],
       "package_groups": [
         {
@@ -105,7 +105,7 @@
               "price_in_cents_with_discount": 39100
             },
             {
-              "packageid": 69816,
+              "packageid": "69816",
               "percent_savings_text": "",
               "percent_savings": 0,
               "option_text": "Great White Shark: GTA$1,250,000 - \u20b9 783",
@@ -115,7 +115,7 @@
               "price_in_cents_with_discount": 78300
             },
             {
-              "packageid": 69817,
+              "packageid": "69817",
               "percent_savings_text": "",
               "percent_savings": 0,
               "option_text": "Whale Shark: GTA$3,500,000 - \u20b9 1,958",
@@ -125,7 +125,7 @@
               "price_in_cents_with_discount": 195800
             },
             {
-              "packageid": 69821,
+              "packageid": "69821",
               "percent_savings_text": "",
               "percent_savings": 0,
               "option_text": "Megalodon Shark: GTA$8,000,000 - \u20b9 3,916",
@@ -649,7 +649,7 @@
         }
       ],
       "recommendations": {
-        "total": 348375
+        "total": 348788
       },
       "achievements": {
         "total": 69,
@@ -698,7 +698,7 @@
       },
       "release_date": {
         "coming_soon": false,
-        "date": "14 Apr, 2015"
+        "date": "13 Apr, 2015"
       },
       "support_info": {
         "url": "https:\/\/support.rockstargames.com",

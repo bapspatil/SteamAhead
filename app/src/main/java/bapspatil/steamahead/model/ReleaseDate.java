@@ -3,7 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by bapspatil
@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ReleaseDate implements Parcelable {
 
-    @SerializedName("date") String date;
+    @JsonProperty("date") String date;
 
     public String getDate() {
         return date;
@@ -21,7 +21,12 @@ public class ReleaseDate implements Parcelable {
         this.date = date;
     }
 
+    public ReleaseDate(String date) {
+        this.date = date;
+    }
+
     @Override
+
     public int describeContents() {
         return 0;
     }

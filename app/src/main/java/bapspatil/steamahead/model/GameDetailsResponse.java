@@ -1,13 +1,18 @@
 package bapspatil.steamahead.model;
 
-import com.google.gson.annotations.SerializedName;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by bapspatil
  */
 
-public class GameDetailsResponse {
-    @SerializedName("/[0-9]+/") Game game;
+public class GameDetailsResponse implements Parcelable {
+    private Game game;
+
+    public GameDetailsResponse(Game game) {
+        this.game = game;
+    }
 
     public Game getGame() {
         return game;
@@ -17,8 +22,33 @@ public class GameDetailsResponse {
         this.game = game;
     }
 
-    public GameDetailsResponse(Game game) {
+    public GameDetailsResponse() {
 
-        this.game = game;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.game, flags);
+    }
+
+    protected GameDetailsResponse(Parcel in) {
+        this.game = in.readParcelable(Game.class.getClassLoader());
+    }
+
+    public static final Creator<GameDetailsResponse> CREATOR = new Creator<GameDetailsResponse>() {
+        @Override
+        public GameDetailsResponse createFromParcel(Parcel source) {
+            return new GameDetailsResponse(source);
+        }
+
+        @Override
+        public GameDetailsResponse[] newArray(int size) {
+            return new GameDetailsResponse[size];
+        }
+    };
 }

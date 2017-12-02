@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import java.util.List;
 
 import bapspatil.steamahead.R;
-import bapspatil.steamahead.model.Game;
+import bapspatil.steamahead.model.GameData;
 import bapspatil.steamahead.utils.GlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,12 +23,12 @@ import butterknife.ButterKnife;
  */
 
 public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecyclerViewAdapter.GamesViewHolder> {
-    private List<Game> mGamesList;
+    private List<GameData> mGamesList;
     private List<Integer> mPlayers;
     private Context mContext;
     private OnGameClickListener mClickListener;
 
-    public GamesRecyclerViewAdapter(Context context, List<Game> gamesList, List<Integer> players, OnGameClickListener clickListener) {
+    public GamesRecyclerViewAdapter(Context context, List<GameData> gamesList, List<Integer> players, OnGameClickListener clickListener) {
         this.mContext = context;
         this.mGamesList = gamesList;
         this.mPlayers = players;
@@ -43,10 +43,9 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
 
     @Override
     public void onBindViewHolder(GamesViewHolder holder, int position) {
-        holder.mGameTitleTextView.setText(mGamesList.get(position).getData().getName());
-        holder.mPlayersTextView.setText(String.valueOf(mPlayers.get(position)));
+        holder.mGameTitleTextView.setText(mGamesList.get(position).getName());
         GlideApp.with(mContext)
-                .load(mGamesList.get(position).getData().getBackground())
+                .load(mGamesList.get(position).getBackground())
                 .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
@@ -79,6 +78,6 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
     }
 
     public interface OnGameClickListener {
-        void onGameClicked(Game game);
+        void onGameClicked(GameData game);
     }
 }

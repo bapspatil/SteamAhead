@@ -2,6 +2,7 @@ package bapspatil.steamahead.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,6 +41,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         hideSystemUI();
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+        signInButton.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -59,8 +61,15 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        int SPLASH_TIME_OUT = 1000;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                updateUI(currentUser);
+            }
+        }, SPLASH_TIME_OUT);
+
     }
 
     @Override
@@ -81,6 +90,8 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         if(user != null) {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
+        } else {
+            signInButton.setVisibility(View.VISIBLE);
         }
     }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {

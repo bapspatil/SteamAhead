@@ -2,4 +2,7 @@
     <string name="app_name">SteamAhead</string>
     <string name="game_thumbnail">This is the thumbnail of the game.</string>
     <string name="players_playing">Number of players playing the game</string>
+    <string name="metacritic_score">Metacritic\nScore</string>
+    <string name="release_date">Release\nDate</string>
+    <string name="screenshots">Screenshots</string>
 </resources>

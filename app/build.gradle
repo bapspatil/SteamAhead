@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'org.jsoup:jsoup:1.11.2'
 
     implementation 'com.google.android.gms:play-services-auth:11.6.2'
     implementation 'com.google.firebase:firebase-auth:11.6.2'

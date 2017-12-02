@@ -7,7 +7,7 @@
     android:layout_height="180dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="6dp">
+    app:cardElevation="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:id="@+id/game_thumbnail_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/game_thumbnail"/>
 
         <TextView

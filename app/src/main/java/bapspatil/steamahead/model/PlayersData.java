@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by bapspatil
@@ -15,24 +14,26 @@ import java.util.List;
 
 public class PlayersData implements Parcelable {
     @JsonIgnore Object start_twitch, values_twitch, start, step;
-    @JsonProperty("values") private List<Integer> values;
+    @JsonProperty("values") private ArrayList<Integer> values = new ArrayList<>(10000);
 
-    public List<Integer> getValues() {
-        return values;
-    }
-
-    public void setValues(List<Integer> values) {
-        this.values = values;
-    }
-
-    public PlayersData(List<Integer> values) {
-
-        this.values = values;
-    }
 
     public PlayersData() {
 
     }
+
+    public ArrayList<Integer> getValues() {
+        return values;
+    }
+
+    public void setValues(ArrayList<Integer> values) {
+        this.values = values;
+    }
+
+    public PlayersData(ArrayList<Integer> values) {
+
+        this.values = values;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -48,7 +49,7 @@ public class PlayersData implements Parcelable {
         in.readList(this.values, Integer.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<PlayersData> CREATOR = new Parcelable.Creator<PlayersData>() {
+    public static final Creator<PlayersData> CREATOR = new Creator<PlayersData>() {
         @Override
         public PlayersData createFromParcel(Parcel source) {
             return new PlayersData(source);

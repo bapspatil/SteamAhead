@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import bapspatil.steamahead.R;
 import bapspatil.steamahead.model.GameData;
@@ -24,15 +23,14 @@ import butterknife.ButterKnife;
  */
 
 public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecyclerViewAdapter.GamesViewHolder> {
-    private List<GameData> mGameData;
-    private ArrayList<Integer> mPlayers;
+    private ArrayList<GameData> mGameData;
+    private ArrayList<String> mHeaderImages;
     private Context mContext;
     private OnGameClickListener mClickListener;
 
-    public GamesRecyclerViewAdapter(Context context, List<GameData> gameData, ArrayList<Integer> players, OnGameClickListener clickListener) {
+    public GamesRecyclerViewAdapter(Context context, ArrayList<GameData> gameData, OnGameClickListener clickListener) {
         this.mContext = context;
         this.mGameData = gameData;
-        this.mPlayers = players;
         this.mClickListener = clickListener;
     }
 
@@ -45,8 +43,7 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
     @Override
     public void onBindViewHolder(GamesViewHolder holder, int position) {
         holder.mGameTitleTextView.setText(mGameData.get(position).getName());
-        if (mPlayers.size() != 0)
-            holder.mPlayersTextView.setText(String.valueOf(mPlayers.get(position)));
+        holder.mPlayersTextView.setText(String.valueOf(mGameData.get(position).getPlayers()));
         GlideApp.with(mContext)
                 .load(mGameData.get(position).getHeader_image())
                 .centerCrop()

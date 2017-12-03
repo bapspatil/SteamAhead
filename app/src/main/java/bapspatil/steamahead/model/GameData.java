@@ -25,6 +25,15 @@ public class GameData implements Parcelable {
     @SerializedName("screenshots") List<Screenshots> screenshots = new ArrayList<>();
     @SerializedName("release_date") ReleaseDate release_date;
     @SerializedName("header_image") String header_image;
+    long players;
+
+    public long getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(long players) {
+        this.players = players;
+    }
 
     public GameData(String steam_appid, String name, String detailed_description, Metacritic metacritic, List<Screenshots> screenshots, ReleaseDate release_date, String header_image) {
         this.steam_appid = steam_appid;

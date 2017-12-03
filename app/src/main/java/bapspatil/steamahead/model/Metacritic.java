@@ -3,8 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by bapspatil
@@ -12,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Metacritic implements Parcelable {
 
-    @JsonIgnore Object url;
-
-    @JsonProperty("score") int score;
+    @SerializedName("score") int score;
 
     public int getScore() {
         return score;

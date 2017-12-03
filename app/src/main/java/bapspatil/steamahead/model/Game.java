@@ -3,16 +3,15 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by bapspatil
  */
 
 public class Game implements Parcelable {
-    @JsonIgnore @JsonProperty("success") boolean success;
-    @JsonProperty("data") GameData data;
+
+    @SerializedName("data") GameData data;
 
     public GameData getData() {
         return data;

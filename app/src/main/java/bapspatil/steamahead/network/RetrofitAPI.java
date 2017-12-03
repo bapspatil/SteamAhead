@@ -11,7 +11,7 @@ import bapspatil.steamahead.model.PlayersDetailsResponse;
 import bapspatil.steamahead.utils.Steam;
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -47,11 +47,11 @@ public interface RetrofitAPI {
 
     Retrofit gamesRetrofit = new Retrofit.Builder()
             .baseUrl(Steam.GAME_DETAILS_URL)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build();
 
     Retrofit playersRetrofit = new Retrofit.Builder()
             .baseUrl(Steam.PLAYERS_DETAILS_URL)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

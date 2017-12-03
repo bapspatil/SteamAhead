@@ -3,14 +3,14 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by bapspatil
  */
 
 public class GameDetailsResponse2 implements Parcelable {
-    @JsonProperty("730") private Game game;
+    @SerializedName("730") private Game game;
 
     public GameDetailsResponse2(Game game) {
         this.game = game;

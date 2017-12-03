@@ -3,8 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,24 +17,14 @@ import java.util.List;
  */
 
 public class GameData implements Parcelable {
-    @JsonIgnore Object type, required_age, is_free, controller_support, about_the_game, supported_languages, short_description, website, pc_requirements, mac_requirements, linux_requirements, legal_notice, ext_user_account_notice, developers, publishers, price_overview, packages, package_groups, platforms, categories, genres, movies, recommendations, achievements, support_info, background, dlc, reviews;
 
-    @JsonProperty("steam_appid") String steam_appid;
-    @JsonProperty("name") String name;
-    @JsonProperty("detailed_description") String detailed_description;
-    @JsonProperty("metacritic") Metacritic metacritic;
-    @JsonProperty("screenshots") List<Screenshots> screenshots = new ArrayList<>();
-    @JsonProperty("release_date") ReleaseDate release_date;
-    @JsonProperty("header_image") String header_image;
-    private int numberOfPlayers;
-
-    public int getNumberOfPlayers() {
-        return numberOfPlayers;
-    }
-
-    public void setNumberOfPlayers(int numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
-    }
+    @SerializedName("steam_appid") String steam_appid;
+    @SerializedName("name") String name;
+    @SerializedName("detailed_description") String detailed_description;
+    @SerializedName("metacritic") Metacritic metacritic;
+    @SerializedName("screenshots") List<Screenshots> screenshots = new ArrayList<>();
+    @SerializedName("release_date") ReleaseDate release_date;
+    @SerializedName("header_image") String header_image;
 
     public GameData(String steam_appid, String name, String detailed_description, Metacritic metacritic, List<Screenshots> screenshots, ReleaseDate release_date, String header_image) {
         this.steam_appid = steam_appid;

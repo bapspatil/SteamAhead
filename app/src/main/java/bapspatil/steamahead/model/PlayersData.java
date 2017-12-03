@@ -3,8 +3,7 @@ package bapspatil.steamahead.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
@@ -13,8 +12,7 @@ import java.util.ArrayList;
  */
 
 public class PlayersData implements Parcelable {
-    @JsonIgnore Object start_twitch, values_twitch, start, step;
-    @JsonProperty("values") private ArrayList<Integer> values = new ArrayList<>(10000);
+    @SerializedName("values") private ArrayList<Integer> values = new ArrayList<>(10000);
 
 
     public PlayersData() {

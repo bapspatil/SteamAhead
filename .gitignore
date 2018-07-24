@@ -1,8 +1,7 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+.idea
 .DS_Store
 /build
 /captures
@@ -11,3 +10,4 @@
 app/libs/
 gradle.properties
 app/google-services.json
+app/release/

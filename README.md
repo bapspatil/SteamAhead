@@ -1,7 +1,7 @@
 
 # SteamAhead
 
-A Steam app that shows a catalogue of games from Steam, and their details.
+A Steam app that shows a catalogue of games from Steam, and a few of their details.
 
 ## Screenshots
 
